@@ -6,7 +6,7 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
 var backgroundImg,platform, chain;
-var cLog;
+var log6;
 
 function preload() 
 {
@@ -39,17 +39,9 @@ function setup(){
 
     bird = new Bird(100,100);
 
-    cLog = new Log(230,180,80,PI/2);
+    log6 = new Log(230,180,80,PI/2);
 
-    var options = {
-        bodyA : bird.body,
-        bodyB : cLog.body,
-        stiffness : 0.04,
-        length : 10
-    }
-    chain = Constraint.create(options);
-    World.add(world,chain);
-
+    chain = new Chain(bird.body,log6.body);
 }
 
 function draw(){
@@ -76,8 +68,6 @@ function draw(){
     bird.display();
     platform.display();
 
-    cLog.display();
-
-    strokeWeight(3);
-    line(bird.body.position.x, bird.body.position.y, cLog.body.position.x, cLog.body.position.y);
+    log6.display();
+    chain.display();
 }
